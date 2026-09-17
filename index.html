@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Modern Cinema</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+:root { --red:#e50914; --black:#070707; --white:#f5f5f5; }
+* { box-sizing:border-box; }
+html,body { margin:0; width:100%; height:100%; background:var(--black); color:var(--white); font-family:Inter,Arial,sans-serif; overflow:hidden; }
+body { background:
+  radial-gradient(circle at 85% 15%, rgba(229,9,20,.12), transparent 30%),
+  linear-gradient(135deg,#090909 0%,#030303 100%); }
+.slide { display:none; position:absolute; inset:0; padding:8vh 32vw 9vh 5vw; overflow:auto; }
+.slide.cover { padding:8vh 9vw 9vh 11vw; }
+.slide.active { display:flex; flex-direction:column; justify-content:center; }
+main { width:min(1180px,100%); position:relative; z-index:2; height:100% }
+.body { display:flex; flex-direction: column;  justify-content: center;  align-items: center; font-size:14px; line-height:1.52; max-width:1120px; font-weight:400; letter-spacing:-.015em; padding:30px; height: 80% }
+.body p { margin:0 0 2.1rem; }
+.body h2 {padding-bottom: 30px;}
+.body p:last-child { margin-bottom:0; }
+.accent { position:absolute; left:0; top:0; width:7px; height:100%; background:var(--red); }
+.slide::before { content:""; position:absolute; width:38vw; height:38vw; border:1px solid rgba(229,9,20,.18); right:-12vw; top:-16vw; border-radius:50%; }
+.corner { position:absolute; width:80px; height:80px; opacity:.7; }
+.corner.top { right:32vw; top:8vh; border-top:1px solid #555; border-right:1px solid #555; }
+.cover .corner.top { right:8vw; }
+.corner.bottom { left:5vw; bottom:8vh; border-bottom:1px solid #333; border-left:1px solid #333; }
+.slide-counter { position:absolute; right:8vw; bottom:8vh; font-size:11px; color:#777; letter-spacing:.18em; }
+.timeline { position:absolute; left:0; right:0; bottom:0; height:4px; background:#151515; }
+.timeline span { display:block; height:100%; background:var(--red); width:calc((var(--current) + 1) / var(--total) * 100%); }
+.footnotes { margin-top:5vh; padding: 15px 30px 0; border-top:1px solid #333; max-width:1100px; color:#999; font-size:8px; line-height:1.45; height:20% }
+.footnotes div { margin:0 0 7px; }
+.cover main { display:flex; align-items:flex-start; }
+.cover .body { font-size:clamp(64px,10vw,145px); line-height:.9; font-weight:800; letter-spacing:-.07em; max-width:1000px; }
+.controls { position:fixed; z-index:20; right:7.8vw; bottom:11vh; display:flex; gap:6px; }
+button { width:42px; height:34px; border:1px solid #444; background:#0e0e0e; color:#eee; cursor:pointer; font-size:20px; }
+button:hover { border-color:var(--red); color:var(--red); }
+.hint { position:fixed; z-index:20; right:8vw; bottom:17vh; color:#555; font-size:10px; letter-spacing:.16em; }
+.background { position: absolute; width: 26vw; background-size: cover; background-position: center; top: 0; bottom: 0; right: 0; opacity: 0.4; z-index: 1; }
+section[data-index="1"] .background { background-image: url('https://ichef.bbci.co.uk/news/1536/cpsprodpb/5250/live/075477f0-4310-11f1-8d32-27ce5a537ca2.jpg.webp'); }
+section[data-index="2"] .background { background-image: url('https://deadline.com/wp-content/uploads/2026/03/Spider-Man-Brand-New-Day.webp?w=681&h=383&crop=1'); }
+section[data-index="3"] .background { background-image: url('https://miro.medium.com/v2/resize:fit:2000/format:webp/0*yCLtZ1_I49N30j5v'); }
+section[data-index="4"] .background { background-image: url('https://images.immediate.co.uk/production/volatile/sites/3/2025/11/Toy-Story-5-1b15e7f.png?quality=90&webp=true&resize=1951,1301'); }
+section[data-index="5"] .background { background-image: url('https://hips.hearstapps.com/hmg-prod/images/elle-parasite-1576865609.jpg?resize=1800:*'); }
+
+@media(max-width:700px) {
+  .slide { padding:8vh 9vw 11vh 12vw; }
+  .body { font-size:14px; line-height:1.45; }
+  .cover .body { font-size:clamp(50px,14vw,90px); }
+  .footnotes { font-size:9px; margin-top:0; }
+  .corner.top { right:7vw; }
+  .corner.bottom { left:10vw; }
+  .hint { display:none; }
+  .background { top: 72.8vh; opacity: 0.2; width: 100%; height: 28vh; }
+}
+</style>
+</head>
+<body>
+
+<section class="slide cover" data-index="0">
+  <div class="accent"></div>
+  <div class="corner top"></div>
+  <div class="corner bottom"></div>
+  <div class="slide-counter">01 / 06</div>
+  <main>
+    <div class="body"><p>The Modern Cinema</p></div>
+    
+  </main>
+  <div class="timeline"><span></span></div>
+</section>
+
+<section class="slide" data-index="1">
+  <div class="accent"></div>
+  <div class="corner top"></div>
+  <div class="corner bottom"></div>
+  <div class="slide-counter">02 / 06</div>
+  <main>
+    <div class="body">
+      <h2>The Impact of the Pandemic on Cinema</h2>
+      <p>Everyone&#x27;s life somehow changed after the pandemics. People changed the way they relate to each other, avoiding public spaces and having a increased usage of social media.¹ This scenario isn&#x27;t different for cinema in general. Even after COVID-19 lockdowns, theaters ticket sales have decreased.² Movie theaters has lost spectators to homevideo.</p><p>An average person spends over 78.000 hours watching TV.³ That&#x27;s an average of 3 hours in front of a screen everyday.
+This information by itself is a pot of gold for streaming companies, that uses this data as a goal to measure their own performance. To keep a high average screen time, Netflix needs to constantly feed relevant content to their customers, interested in new episodes of their favorite TV series or new blockbuster movies. It should be good, right? But it is not.</p></div>
+    <div class="footnotes">
+      <div>¹ Marshall, Lisa. &quot;‘An Epidemic of Loneliness’: How the Pandemic Changed Life for Aging Adults.&quot; CU Boulder Today, University of Colorado Boulder, 9 Apr. 2024
+      <br>² Steinberg, Sarah. &quot;The Average Person Spends 78,000 Hours of Their Life Watching TV.&quot; New York Post, 3 Dec. 2019, nypost.com.
+      <br>³ Moughan, Layne. &quot;What Happened to Movie Theaters Post-COVID?&quot; The Eagle, American University Student Media, 28 Apr. 2026, www.theeagleonline.com/article/2026/04/what-happened-to-movie-theaters-post-covid.</div>
+    </div>
+  </main>
+  <div class="timeline"><span></span></div>
+  <div class="background"></div>
+
+</section>
+
+<section class="slide" data-index="2">
+  <div class="accent"></div>
+  <div class="corner top"></div>
+  <div class="corner bottom"></div>
+  <div class="slide-counter">03 / 06</div>
+  <main>
+    <div class="body">
+      <h2>The Rise of Streaming Platforms</h2>
+      <p>To start with, streaming platforms have two goals at their business: Keep users renewing their signature and acquire new users. 
+To accomplish these targets, streaming companies invest billions every year producing content to their platforms. Netflix spent over U$ 18 billion in 2025⁴, with hundreds of new titles released worldwide. However, the investment prioritizes quantity over quality. Companies prefer to have a vast catalog of series and movies, rather than have acclaimed productions in their repertoire.</p></div>
+    <div class="footnotes"><div>⁴ Spangler, Todd. &quot;Netflix Content Spending, Set to Hit $18 Billion in 2025, Is &#x27;Not Anywhere Near a Ceiling,&#x27; CFO Says.&quot; Variety, 5 Mar. 2025, variety.com.</div></div>
+  </main>
+  <div class="timeline"><span></span></div>
+  <div class="background"></div>
+</section>
+
+<section class="slide " data-index="3">
+  <div class="accent"></div>
+  <div class="corner top"></div>
+  <div class="corner bottom"></div>
+  <div class="slide-counter">04 / 06</div>
+  <main>
+    <div class="body">
+      <h2>The Impact of Social Media on Spectators</h2>
+      <p>Secondly, social media, remote work and smartphones has increased the time a person spents in front of a screen. 
+Although this reveals public health concerns like physical, mental and sleep health issues, for Netflix this is read as an opportunity. They developed a workflow considering users are using their phone while watching content.⁵ This means that movies&#x27; and series&#x27; scripts will explicitly have the characters revealing information in exposive dialogs repeatedly. A distracted user can understand the simple plot of a movie, because a missed scene information will be brought up in a few minutes.</p>
+    </div>
+    <div class="footnotes"><div>⁵ Newkey-Burden, Chas. &quot;Netflix and the Second Screen Phenomenon.&quot; The Week, 2 July 2025, theweek.com/culture-life/tv-radio/netflix-and-the-second-screen-phenomenon.</div></div>
+  </main>
+  <div class="timeline"><span></span></div>
+  <div class="background"></div>
+</section>
+
+<section class="slide " data-index="4">
+  <div class="accent"></div>
+  <div class="corner top"></div>
+  <div class="corner bottom"></div>
+  <div class="slide-counter">05 / 06</div>
+  <main>
+    <div class="body">
+      <h2>Artificial Intelligence and Content Creation</h2>
+      <p>At last, the artificial inteligence have reached the audiosivual segment. Image, video and audio content can be generated as well as text scripts for the planned scenes. On the one hand, companies are saving costs, replacing workers with AI tools.⁶ On the other hand, AI can&#x27;t create nothing new. Models are trained with human-made material and try it&#x27;s best to replicate it, giving the power to anyone emulate a famous director style. This floods the platforms with generic, low quality material. That is called &quot;the AI slop&quot;.</p></div>
+    <div class="footnotes"><div>⁶ Zwiezen, Zack. &quot;Netflix Brags About 300 Shows And Films Made Using AI Tools.&quot; Kotaku, 16 Jul. 2026, https://kotaku.com/netflix-brags-that-ai-tools-were-used-in-around-300-of-its-shows-and-movies-in-2026-so-far-2000716805.</div></div>
+  </main>
+  <div class="timeline"><span></span></div>
+  <div class="background"></div>
+</section>
+
+<section class="slide " data-index="5">
+  <div class="accent"></div>
+  <div class="corner top"></div>
+  <div class="corner bottom"></div>
+  <div class="slide-counter">06 / 06</div>
+  <main>
+    <div class="body">
+      <h2>Conclusion and the Future of Cinema</h2>
+      <p>The entertainment industry has shifted its position, but still exists. 
+People aren&#x27;t spending their money going to theaters to watch something they don&#x27;t think is worth. However, at home, people do want to watch something while scrolling their social media.
+Streamings are still renewing and getting new user accounts and the content fits the users behaviors. Somehow the AI slop is contributing to this phenomenon, and it is not changing any soon.
+Meanwhile, a few movie makers tries to break the mold and give a fresh air to an industry that serves repetitive formulas.
+Maybe one day we will live in an era where creativity is encouraged and is properly rewarded.</p></div>
+    
+  </main>
+  <div class="timeline"><span></span></div>
+  <div class="background"></div>
+</section>
+
+<div class="hint">← → &nbsp; SPACE</div>
+<div class="controls">
+  <button id="prev" aria-label="Previous slide">‹</button>
+  <button id="next" aria-label="Next slide">›</button>
+</div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let current=0;
+document.documentElement.style.setProperty('--total',slides.length);
+function show(n){
+  current=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,i)=>s.classList.toggle('active',i===current));
+  document.documentElement.style.setProperty('--current',current);
+}
+document.getElementById('next').onclick=()=>show(current+1);
+document.getElementById('prev').onclick=()=>show(current-1);
+document.addEventListener('keydown',e=>{
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(current+1);}
+  if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(current-1);}
+  if(e.key==='Home')show(0);
+  if(e.key==='End')show(slides.length-1);
+});
+show(0);
+</script>
+</body>
+</html>
